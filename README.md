@@ -4,11 +4,21 @@ Check-in is an app for answering a few questions about yourself each day.
 
 The app is written in astro, the forms are saved using netlify Forms. Notifications are supported via [ntfy.sh](ntfy.sh).
 
-## Inspiration
+# Set up on phone
 
-This little project inspired by inspired by Blake Watson's [home-cooked apps](https://blakewatson.com/journal/magnoliajs-2023-the-joys-of-home-cooked-apps/).
+1. Install the [ntfy.sh](https://ntfy.sh) app
+2. Subscribe to the topic and set up notifications
 
 ## Dev Notes
+
+## Local Installation
+
+It's an Astro project, so typical Astro commands apply
+
+```bash
+npm install
+npm run dev
+```
 
 ## Architecture
 
@@ -19,18 +29,7 @@ This little project inspired by inspired by Blake Watson's [home-cooked apps](ht
 5. The user fill outs the form on the check-in website and submits.
 6. The form is submitted to Netlify forms, which persists the data.
 
-TODO: wipe git history
-TODO: delete back up branch
-TODO: make public with apache 2 license
-
-### General Use
-
-```bash
-npm install
-npm run dev
-```
-
-## Ntfy
+## Ntfy Notes
 
 - Home page: ntfy.sh/
 - Docs: https://docs.ntfy.sh/
