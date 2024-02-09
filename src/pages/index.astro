@@ -1,16 +1,189 @@
 ---
+import Layout from "../layouts/Layout.astro";
 
+const questions = [
+  {
+    id: 0,
+    name: "date",
+    label: "Date",
+    type: "date",
+    defaultValue: "",
+    showOutput: false,
+  },
+  {
+    id: 1,
+    name: "pressure",
+    label: "Pressure level",
+    type: "range",
+    defaultValue: "5",
+    showOutput: true,
+  },
+  {
+    id: 2,
+    name: "energy",
+    label: "Energy level",
+    type: "range",
+    defaultValue: "5",
+    showOutput: true,
+  },
+  {
+    id: 3,
+    name: "sleep",
+    label: "Sleep quality",
+    type: "range",
+    defaultValue: "5",
+    showOutput: true,
+  },
+  {
+    id: 4,
+    name: "exercise",
+    label: "Did exercise",
+    type: "range",
+    defaultValue: "5",
+    showOutput: true,
+  },
+  {
+    id: 5,
+    name: "work",
+    label: "Did work",
+    type: "range",
+    defaultValue: "5",
+    showOutput: true,
+  },
+  {
+    id: 6,
+    name: "painkiller",
+    label: "Took painkiller",
+    type: "checkbox",
+    defaultValue: "false",
+    showOutput: true,
+  },
+  {
+    id: 7,
+    name: "painkiller-work",
+    label: "If yes, did work",
+    type: "checkbox",
+    defaultValue: "false",
+    showOutput: true,
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Check-in">
+  <main>
+  <section>
+  <h1>Check-in</h1>
+  <form name="check-in" action="/success" method="POST" data-netlify="true">
+    <input type="hidden" name="form-name" value="check-in" />
+    {
+      questions.map((q) => {
+        return (
+          <div class="form-field">
+            <label>
+              <span>{q.label}</span>
+              {q.showOutput && (<span>(</span><output id=`value-${q.id}`></output><span>):</span>)}
+            </label>
+            <input
+              id=`input-${q.id}`
+              class="show-value"
+              type={q.type}
+              min="0"
+              max="10"
+              value={q.defaultValue}
+              step="1"
+              name={q.name}
+              data-show-value=`value-${q.id}`
+            />
+          </div>
+        );
+      })
+    }
+    <button class="submit-button">Submit</button>
+  </form>
+  </section>
+</main>
+<script is:inline>
+  function setUpInputs() {
+    // Render the currently selected values in the form:
+    // For each .show-value element, assume it's an input with data-show-value
+    // set. Set the element with the id data-show-value to the input's current value.
+    document.querySelectorAll(".show-value").forEach((inputElement) => {
+      const valueElementId = "#" + inputElement.dataset.showValue;
+      const valueElement = document.querySelector(valueElementId);
+
+      if (valueElement) {
+       valueElement.textContent = inputElement.value;
+
+        if (inputElement.type === "checkbox") {
+         valueElement.textContent = inputElement.checked;
+        } else {
+         valueElement.textContent = inputElement.value;
+        }
+
+       inputElement.addEventListener("input", (event) => {
+        if (inputElement.type === "checkbox") {
+         valueElement.textContent = inputElement.checked;
+        } else {
+         valueElement.textContent = inputElement.value;
+        }
+       })
+      }
+    });
+
+    // Set the date to today
+    document.querySelectorAll(".show-value").forEach((inputElement) => {
+      if (inputElement.type === "date") {
+        inputElement.valueAsDate = new Date();
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => {setUpInputs()}, {once: false});
+
+</script>
+</Layout>
+
+<style>
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80dvh;
+  }
+  section {
+    max-width: 310px;
+    margin: auto;
+    background-image: var(--gradient-9), var(--noise-3);
+    border-radius: var(--radius-3);
+    padding: 1rem;
+  }
+
+  h1 {
+    text-align: center;
+  }
+  form {
+    display: grid;
+    gap: 0.5rem;
+    align-items: start;
+    /* font-size: 0.875rem; */
+  }
+
+  label {
+    justify-self: start;
+  }
+
+  .form-field {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .submit-button {
+    width: fit-content;
+    justify-self: center;
+    padding: 0.25rem 0.375rem;
+    margin: 0.375rem 0 0.125rem 0;
+    font-size: 1rem;
+  }
+</style>

@@ -1,47 +1,45 @@
-# Astro Starter Kit: Minimal
+# Check-in
 
-```sh
-npm create astro@latest -- --template minimal
+Check-in is an app for answering a few questions about yourself each day.
+
+The app is written in astro, the forms are saved using netlify Forms. Notifications are supported via [ntfy.sh](ntfy.sh).
+
+## Inspiration
+
+This little project inspired by inspired by Blake Watson's [home-cooked apps](https://blakewatson.com/journal/magnoliajs-2023-the-joys-of-home-cooked-apps/).
+
+## Dev Notes
+
+## Architecture
+
+1. Github action calls the nfty.sh API to send a notification.
+2. The nfty.sh server receives the notification.
+3. Nfty notifies the phone app, which is subscribed to the topic.
+4. User clicks the notification, navigating them to the check-in website.
+5. The user fill outs the form on the check-in website and submits.
+6. The form is submitted to Netlify forms, which persists the data.
+
+TODO: wipe git history
+TODO: delete back up branch
+TODO: make public with apache 2 license
+
+### General Use
+
+```bash
+npm install
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Ntfy
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- Home page: ntfy.sh/
+- Docs: https://docs.ntfy.sh/
+- Ntfy app: https://ntfy.sh/app
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+curl \
+  -H "Title: Daily Check-in" \
+  -H "Click: https://check-in-daily.netlify.app/" \
+  -d "Click do to your daily check-in" \
+  ntfy.sh/mytopic
+```
