@@ -22,9 +22,9 @@ npm run dev
 
 ## Architecture
 
-1. Github action calls the nfty.sh API to send a notification.
-2. The nfty.sh server receives the notification.
-3. Nfty notifies the phone app, which is subscribed to the topic.
+1. Github action calls the ntfy.sh API to send a notification.
+2. The ntfy.sh server receives the notification.
+3. Ntfy notifies the phone app, which is subscribed to the topic.
 4. User clicks the notification, navigating them to the check-in website.
 5. The user fill outs the form on the check-in website and submits.
 6. The form is submitted to Netlify forms, which persists the data.
