@@ -1,7 +1,7 @@
 name: Notify
 on:
   schedule:
-    - cron: "0 20 * * *" # At 8pm UTC
+    - cron: "0 18 * * *"
   workflow_dispatch:
 
 jobs:
