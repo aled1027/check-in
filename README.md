@@ -42,3 +42,6 @@ curl \
   -d "Click do to your daily check-in" \
   ntfy.sh/mytopic
 ```
+
+
+
