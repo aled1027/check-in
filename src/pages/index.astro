@@ -24,8 +24,8 @@ const questions = [
     id: 2,
     name: "energy",
     label: "Energy level",
-    type: "range",
-    inputmode: "",
+    type: "number",
+    inputmode: "decimal",
     defaultValue: "5",
     showOutput: true,
   },
@@ -33,8 +33,8 @@ const questions = [
     id: 3,
     name: "sleep",
     label: "Sleep quality",
-    type: "range",
-    inputmode: "",
+    type: "number",
+    inputmode: "decimal",
     defaultValue: "5",
     showOutput: true,
   },
@@ -42,8 +42,8 @@ const questions = [
     id: 4,
     name: "exercise",
     label: "Did exercise",
-    type: "range",
-    inputmode: "",
+    type: "number",
+    inputmode: "decimal",
     defaultValue: "5",
     showOutput: true,
   },
@@ -51,8 +51,8 @@ const questions = [
     id: 5,
     name: "work",
     label: "Did work",
-    type: "range",
-    inputmode: "",
+    type: "number",
+    inputmode: ""decimal,
     defaultValue: "5",
     showOutput: true,
   },
@@ -96,7 +96,7 @@ const questions = [
               class="show-value"
               type={q.type}
               inputmode={q.inputmode}
-              min="0"
+              min="1"
               max="10"
               value={q.defaultValue}
               step="1"
