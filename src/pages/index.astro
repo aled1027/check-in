@@ -7,6 +7,7 @@ const questions = [
     name: "date",
     label: "Date",
     type: "date",
+    inputmode: "",
     defaultValue: "",
     showOutput: false,
   },
@@ -14,7 +15,8 @@ const questions = [
     id: 1,
     name: "pressure",
     label: "Pressure level",
-    type: "range",
+    type: "number",
+    inputmode: "decimal",
     defaultValue: "5",
     showOutput: true,
   },
@@ -23,6 +25,7 @@ const questions = [
     name: "energy",
     label: "Energy level",
     type: "range",
+    inputmode: "",
     defaultValue: "5",
     showOutput: true,
   },
@@ -31,6 +34,7 @@ const questions = [
     name: "sleep",
     label: "Sleep quality",
     type: "range",
+    inputmode: "",
     defaultValue: "5",
     showOutput: true,
   },
@@ -39,6 +43,7 @@ const questions = [
     name: "exercise",
     label: "Did exercise",
     type: "range",
+    inputmode: "",
     defaultValue: "5",
     showOutput: true,
   },
@@ -47,6 +52,7 @@ const questions = [
     name: "work",
     label: "Did work",
     type: "range",
+    inputmode: "",
     defaultValue: "5",
     showOutput: true,
   },
@@ -55,6 +61,7 @@ const questions = [
     name: "painkiller",
     label: "Took painkiller",
     type: "checkbox",
+    inputmode: "",
     defaultValue: "false",
     showOutput: true,
   },
@@ -63,6 +70,7 @@ const questions = [
     name: "painkiller-work",
     label: "If yes, did work",
     type: "checkbox",
+    inputmode: "",
     defaultValue: "false",
     showOutput: true,
   },
@@ -87,6 +95,7 @@ const questions = [
               id=`input-${q.id}`
               class="show-value"
               type={q.type}
+              inputmode={q.inputmode}
               min="0"
               max="10"
               value={q.defaultValue}
